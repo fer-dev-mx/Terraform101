@@ -5,5 +5,5 @@ resource "random_string" "suffix" {
 }
 
 locals {
-  environment_name = "fersblog-dev"
+  environment_name = "${var.application_name}-${var.environment_name}"
 }
