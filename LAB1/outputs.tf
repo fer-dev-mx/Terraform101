@@ -1,0 +1,9 @@
+output "application_name" {
+  value = var.application_name
+}
+output "environment_name" {
+  value = var.environment_name
+}
+output "environment_preffix" {
+  value = local.environment_name
+}
