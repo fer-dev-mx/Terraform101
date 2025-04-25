@@ -7,3 +7,6 @@ output "environment_name" {
 output "environment_preffix" {
   value = local.environment_name
 }
+output "suffix" {
+  value = random_string.suffix.result
+}
