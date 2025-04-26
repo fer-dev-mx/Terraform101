@@ -10,3 +10,7 @@ output "environment_preffix" {
 output "suffix" {
   value = random_string.suffix.result
 }
+output "api_key" {
+  value     = var.api_key
+  sensitive = true
+}
