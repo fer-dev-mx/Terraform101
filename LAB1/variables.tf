@@ -1,5 +1,10 @@
 variable "application_name" {
   type = string
+
+  validation {
+    condition     = can(regex("^[a-zA-Z0-9-]+$", var.application_name))
+    error_message = "Application name must consist of alphanumeric characters and hyphens only."
+  }
 }
 variable "environment_name" {
   type = string
