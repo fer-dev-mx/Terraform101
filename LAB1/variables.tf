@@ -17,8 +17,8 @@ variable "instance_count" {
   type = number
 
   validation {
-    condition     = var.instance_count > 0
-    error_message = "Instance count must be a positive number."
+    condition     = var.instance_count >= local.min_nodes && var.instance_count <= local.max_nodes && var.instance_count % 2 != 0
+    error_message = "Instance count must be between 5 and 10 and odd."
   }
 }
 variable "enabled" {
