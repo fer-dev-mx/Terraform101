@@ -15,6 +15,11 @@ variable "api_key" {
 }
 variable "instance_count" {
   type = number
+
+  validation {
+    condition     = var.instance_count > 0
+    error_message = "Instance count must be a positive number."
+  }
 }
 variable "enabled" {
   type = bool
