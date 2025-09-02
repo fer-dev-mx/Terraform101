@@ -26,3 +26,9 @@ output "kind" {
 output "tier" {
   value = var.sku_settings.tier
 }
+output "alpha" {
+  value = module.alpha.random_string
+}
+output "bravo" {
+  value = module.bravo.random_string
+}
