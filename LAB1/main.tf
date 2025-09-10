@@ -8,6 +8,26 @@ locals {
   environment_name = "${var.application_name}-${var.environment_name}-${random_string.suffix.result}"
 }
 
+module "regionA" {
+  source = "./modules/regional-stamp"
+
+  region         = "westus"
+  name           = "foo"
+  min_node_count = 4
+  max_node_count = 8
+}
+
+module "regionB" {
+  source = "./modules/regional-stamp"
+
+  region         = "eastus"
+  name           = "bar"
+  min_node_count = 4
+  max_node_count = 8
+}
+
+
+/*
 resource "random_string" "list" {
   count   = length(var.regions)
   length  = 6
@@ -28,18 +48,4 @@ resource "random_string" "if" {
   upper   = false
   special = false
 }
-
-module "alpha" {
-  source  = "hashicorp/module/random"
-  version = "1.0.0"
-}
-
-module "bravo" {
-  source  = "hashicorp/module/random"
-  version = "1.0.0"
-}
-
-module "charlie" {
-  source = "./modules/rando"
-  length = 8
-}
+*/
