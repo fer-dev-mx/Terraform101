@@ -27,8 +27,8 @@ output "tier" {
   value = var.sku_settings.tier
 }
 output "regionA" {
-  value = module.regional_stamps[0].name
+  value = module.regional_stamps["foo"].name
 }
 output "regionB" {
-  value = module.regional_stamps[1].name
+  value = module.regional_stamps["bar"].name
 }

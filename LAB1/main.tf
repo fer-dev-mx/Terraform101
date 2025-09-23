@@ -6,8 +6,8 @@ resource "random_string" "suffix" {
 
 locals {
   environment_name = "${var.application_name}-${var.environment_name}-${random_string.suffix.result}"
-  regional_stamps = [
-    {
+  regional_stamps = {
+    /*{
       region         = "westus"
       name           = "foo"
       min_node_count = 4
@@ -18,20 +18,38 @@ locals {
       name           = "bar"
       min_node_count = 4
       max_node_count = 8
+    }*/
+    "foo" = {
+      region         = "westus"
+      min_node_count = 4
+      max_node_count = 8
+    },
+    "bar" = {
+      region         = "eastus"
+      min_node_count = 4
+      max_node_count = 8
     }
-  ]
+  }
 }
 
 
 
 module "regional_stamps" {
   source = "./modules/regional-stamp"
-  count  = length(local.regional_stamps)
 
+  //count  = length(local.regional_stamps)
+  for_each = local.regional_stamps
+
+  region         = each.value.region
+  name           = each.key
+  min_node_count = each.value.min_node_count
+  max_node_count = each.value.max_node_count
+  /*
   region         = local.regional_stamps[count.index].region
   name           = local.regional_stamps[count.index].name
   min_node_count = local.regional_stamps[count.index].min_node_count
   max_node_count = local.regional_stamps[count.index].max_node_count
+  */
 }
 
 
