@@ -10,9 +10,9 @@ resource "random_string" "suffix" {
 }
 
 resource "azurerm_storage_account" "main" {
-  name                     = "st${random_string.suffix.result}"
+  name                     = "stlab${random_string.suffix.result}"
   resource_group_name      = azurerm_resource_group.main.name
   location                 = azurerm_resource_group.main.location
   account_tier             = "Standard"
-  account_replication_type = "GRS"
+  account_replication_type = "LRS"
 }
