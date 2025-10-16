@@ -13,3 +13,5 @@ terraform init \
     -backend-config="storage_account_name=stlab37c80r94uq" \
     -backend-config="container_name=tfstate" \
     -backend-config="key=observability-dev"
+
+terraform $*
