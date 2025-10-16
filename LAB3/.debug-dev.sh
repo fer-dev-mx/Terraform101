@@ -6,12 +6,16 @@ export TF_VAR_application_name="observability"
 export TF_VAR_environment_name="dev"
 
 # set the backend
+export BACKEND_RESOURCE_GROUP="rg-terraform-state-course-dev"
+export BACKEND_STORAGE_ACCOUNT="stlab37c80r94uq"
+export BACKEND_CONTAINER_NAME="tfstate"
+export BACKEND_KEY=${TF_VAR_application_name}-${TF_VAR_environment_name}
 
 # run terraform
 terraform init \
-    -backend-config="resource_group_name=rg-terraform-state-course-dev" \
-    -backend-config="storage_account_name=stlab37c80r94uq" \
-    -backend-config="container_name=tfstate" \
-    -backend-config="key=observability-dev"
+    -backend-config="resource_group_name=${BACKEND_RESOURCE_GROUP}" \
+    -backend-config="storage_account_name=${BACKEND_STORAGE_ACCOUNT}" \
+    -backend-config="container_name=${BACKEND_CONTAINER_NAME}" \
+    -backend-config="key=${BACKEND_KEY}"
 
 terraform $*
