@@ -19,3 +19,5 @@ terraform init \
     -backend-config="key=${BACKEND_KEY}"
 
 terraform $*
+
+rm -rf .terraform
