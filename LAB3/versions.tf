@@ -14,10 +14,10 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "rg-terraform-state-course-dev"
-    storage_account_name = "stlab37c80r94uq"
-    container_name       = "tfstate"
-    key                  = "observability-dev"
+    # resource_group_name  = "rg-terraform-state-course-dev"
+    # storage_account_name = "stlab37c80r94uq"
+    # container_name       = "tfstate"
+    # key                  = "observability-dev"
   }
 }
 
