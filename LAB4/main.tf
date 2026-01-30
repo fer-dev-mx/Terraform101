@@ -28,8 +28,8 @@ resource "azurerm_role_assignment" "terraform_user" {
 }
 
 data "azurerm_log_analytics_workspace" "observability" {
-  name                = "log-observability-dev"
-  resource_group_name = "rg-observability-dev"
+  name                = "log-observability-${var.environment_name}"
+  resource_group_name = "rg-observability-${var.environment_name}"
 }
 
 resource "azurerm_monitor_diagnostic_setting" "main" {
