@@ -7,7 +7,7 @@ export TF_VAR_environment_name="dev"
 
 # set the backend
 export BACKEND_RESOURCE_GROUP="rg-terraform-state-course-dev"
-export BACKEND_STORAGE_ACCOUNT="stlab37c80r94uq"
+export BACKEND_STORAGE_ACCOUNT="stlabn1xcsmy116"
 export BACKEND_CONTAINER_NAME="tfstate"
 export BACKEND_KEY=${TF_VAR_application_name}-${TF_VAR_environment_name}
 
