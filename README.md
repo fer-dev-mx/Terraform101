@@ -17,5 +17,6 @@ LAB 2, 3 and 4 is DevOps Stack
 
 * Create Virtual Network
 * Create Subnets using cdir
+* Create Network Security Group and associate with the alpha subnet
 
 NetworkWatcherRG is created by Azure, must be deleted when this RG is deleted
