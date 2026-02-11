@@ -20,3 +20,7 @@ LAB 2, 3 and 4 is DevOps Stack
 * Create Network Security Group and associate with the alpha subnet
 
 NetworkWatcherRG is created by Azure, must be deleted when this RG is deleted
+
+### LAB 6 rg-linuxvm-{env}
+
+* Create Public IP Address
