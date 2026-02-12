@@ -1,0 +1,77 @@
+resource "random_string" "suffix" {
+  length  = 6
+  upper   = false
+  special = false
+}
+
+locals {
+  environment_name = "${var.application_name}-${var.environment_name}-${random_string.suffix.result}"
+  regional_stamps = {
+    /*{
+      region         = "westus"
+      name           = "foo"
+      min_node_count = 4
+      max_node_count = 8
+    },
+    {
+      region         = "eastus"
+      name           = "bar"
+      min_node_count = 4
+      max_node_count = 8
+    }*/
+    "foo" = {
+      region         = "westus"
+      min_node_count = 4
+      max_node_count = 8
+    },
+    "bar" = {
+      region         = "eastus"
+      min_node_count = 4
+      max_node_count = 8
+    }
+  }
+}
+
+
+
+module "regional_stamps" {
+  source = "./modules/regional-stamp"
+
+  //count  = length(local.regional_stamps)
+  for_each = local.regional_stamps
+
+  region         = each.value.region
+  name           = each.key
+  min_node_count = each.value.min_node_count
+  max_node_count = each.value.max_node_count
+  /*
+  region         = local.regional_stamps[count.index].region
+  name           = local.regional_stamps[count.index].name
+  min_node_count = local.regional_stamps[count.index].min_node_count
+  max_node_count = local.regional_stamps[count.index].max_node_count
+  */
+}
+
+
+/*
+resource "random_string" "list" {
+  count   = length(var.regions)
+  length  = 6
+  upper   = false
+  special = false
+}
+
+resource "random_string" "map" {
+  for_each = var.region_instance_count
+  length   = 6
+  upper    = false
+  special  = false
+}
+
+resource "random_string" "if" {
+  count   = var.enabled ? 1 : 0
+  length  = 6
+  upper   = false
+  special = false
+}
+*/
