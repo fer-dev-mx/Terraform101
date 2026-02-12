@@ -76,5 +76,5 @@ resource "azurerm_subnet_network_security_group_association" "alpha_remote_acces
 }
 
 data "http" "my_ip" {
-  url = "https://ifconfig.me/ip"
+  url = "https://ipv4.icanhazip.com"
 }
