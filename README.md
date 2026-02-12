@@ -25,3 +25,4 @@ NetworkWatcherRG is created by Azure, must be deleted when this RG is deleted
 
 * Create Public IP Address
 * Create a Virtual Network Interface Card NIC
+* Create a SSH Key
