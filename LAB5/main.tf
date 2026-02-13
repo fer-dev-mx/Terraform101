@@ -54,28 +54,6 @@ resource "azurerm_subnet" "delta" {
   address_prefixes     = [local.delta_address_space]
 }
 
-resource "azurerm_network_security_group" "remote_access" {
-  name                = "nsg-${var.application_name}-${var.environment_name}-remote-access"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
-
-  security_rule {
-    name                       = "ssh"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = chomp(data.http.my_ip.response_body)
-    destination_address_prefix = "*"
-  }
-}
-
-data "http" "my_ip" {
-  url = "https://ipv4.icanhazip.com"
-}
-
 resource "azurerm_public_ip" "bastion" {
   name                = "pip-${var.application_name}-${var.environment_name}-bastion"
   location            = azurerm_resource_group.main.location
