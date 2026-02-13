@@ -38,9 +38,10 @@ resource "tls_private_key" "vm1" {
   rsa_bits  = 4096
 }
 
-resource "local_file" "public_key" {
-  content  = tls_private_key.vm1.public_key_openssh
-  filename = pathexpand("~/.ssh/vm1.pub")
+resource "azurerm_key_vault_secret" "vm1_public" {
+  name         = "vm-ssh-public"
+  value        = tls_private_key.vm1.public_key_openssh
+  key_vault_id = data.azurerm_key_vault.main.id
 }
 
 resource "azurerm_key_vault_secret" "vm1_private" {
