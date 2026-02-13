@@ -49,6 +49,17 @@ resource "local_file" "public_key" {
   filename = pathexpand("~/.ssh/vm1.pub")
 }
 
+resource "azurerm_key_vault_secret" "vm1_private" {
+  name         = "vm-ssh-private"
+  value        = tls_private_key.vm1.private_key_pem
+  key_vault_id = data.azurerm_key_vault.main.id
+}
+
+data "azurerm_key_vault" "main" {
+  name                = "kv-devops-${var.environment_name}-randonstring"
+  resource_group_name = "rg-devops-${var.environment_name}"
+}
+
 resource "azurerm_linux_virtual_machine" "vm1" {
   name                = "vm1${var.application_name}${var.environment_name}"
   resource_group_name = azurerm_resource_group.main.name
